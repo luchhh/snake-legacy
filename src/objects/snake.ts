@@ -77,8 +77,8 @@ export class Snake {
       this.collision.update(this);
       this.graphics.update(this);
       this.tick = time;
-      this.input.update(this);
     }
+    this.input.update(this);
   }
 
   //private
