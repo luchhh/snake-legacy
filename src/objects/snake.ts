@@ -17,16 +17,18 @@ export class Snake {
   constructor(
     graphics: SnakeGraphics,
     input: SnakeInput,
-    collision: SnakeCollision
+    initialPosition: Position,
+    initialDirection: Direction,
+    collision?: SnakeCollision
   ) {
     this.tick = 0;
     this.graphics = graphics;
     this.input = input;
     this.collision = collision;
 
-    this.direction = 'right';
+    this.direction = initialDirection;
     this.dead = false;
-    this.snakeBody = [{ x: 2, y: 2 }];
+    this.snakeBody = [initialPosition];
   }
 
   //public state
@@ -62,6 +64,9 @@ export class Snake {
   public setDirection(direction: Direction) {
     this.direction = direction;
   }
+  public setCollisionComponent(collision: SnakeCollision) {
+    this.collision = collision;
+  }
 
   public draw() {
     this.graphics.draw(this);
@@ -74,7 +79,7 @@ export class Snake {
 
     if (time - this.tick > 100) {
       this.move();
-      this.collision.update(this);
+      this.collision?.update(this);
       this.graphics.update(this);
       this.tick = time;
     }

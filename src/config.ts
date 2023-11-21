@@ -1,6 +1,7 @@
 import { BootScene } from './scenes/boot-scene';
-import { GameScene } from './scenes/game-scene';
+import { SingleScene } from './scenes/single';
 import { MainMenuScene } from './scenes/main-menu-scene';
+import { MultiplayerLocalScene } from './scenes/multiplayer-local';
 
 export const GameConfig: Phaser.Types.Core.GameConfig = {
   title: 'Snake Legacy',
@@ -11,7 +12,7 @@ export const GameConfig: Phaser.Types.Core.GameConfig = {
   zoom: 3,
   type: Phaser.AUTO,
   parent: 'game',
-  scene: [BootScene, MainMenuScene, GameScene],
+  scene: [BootScene, MainMenuScene, SingleScene, MultiplayerLocalScene],
   input: {
     keyboard: true,
     mouse: false,

@@ -1,5 +1,5 @@
 import { Snake } from '../objects/snake';
-import { GridConfig } from '../scenes/game-scene';
+import { GridConfig } from '../value-objects/grid-config';
 
 export const isBorderSnakeCollision = (
   gridConfig: GridConfig,

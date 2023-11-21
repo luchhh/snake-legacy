@@ -1,7 +1,8 @@
-import { World } from '../../scenes/game-scene';
 import { isAppleSnakeCollision } from '../../services/is-apple-snake-collision';
 import { isBorderSnakeCollision } from '../../services/is-border-player-collision';
 import { isSnakeSelfCollision } from '../../services/is-snake-self-collision';
+import { isSnakeSnakeCollision } from '../../services/is-snake-snake-collision';
+import { World } from '../../value-objects/world';
 import { Snake } from '../snake';
 
 export class SnakeCollision {
@@ -23,7 +24,12 @@ export class SnakeCollision {
 
     if (
       isSnakeSelfCollision(snake.getSnakeBody()) ||
-      isBorderSnakeCollision(this.world.gridConfig, snake)
+      isBorderSnakeCollision(this.world.gridConfig, snake) ||
+      (this.world.otherSnake &&
+        isSnakeSnakeCollision(
+          snake.getSnakeBody(),
+          this.world.otherSnake.getSnakeBody()
+        ))
     ) {
       snake.setDead(true);
     }

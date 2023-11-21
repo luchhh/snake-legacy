@@ -7,11 +7,11 @@ import { SnakeCollision } from '../objects/snake/collision';
 import { AppleGraphics } from '../objects/apple/graphics';
 import { paintBorders } from '../services/paint-borders';
 import { paintScoreText } from '../services/paint-score-text';
+import { World } from '../value-objects/world';
+import { GridConfig } from '../value-objects/grid-config';
+import { SnakeCursorKeys } from '../value-objects/snake-cursor-keys';
 
-export type World = { apple: Apple; gridConfig: GridConfig };
-export type GridConfig = { horizontalSize: number; verticalSize: number };
-
-export class GameScene extends Phaser.Scene {
+export class SingleScene extends Phaser.Scene {
   // field and game setting
 
   private gameHeight: number;
@@ -32,11 +32,11 @@ export class GameScene extends Phaser.Scene {
   private scoreText: Phaser.GameObjects.BitmapText;
 
   // cursor
-  private cursors: Phaser.Types.Input.Keyboard.CursorKeys;
+  private cursors: SnakeCursorKeys;
 
   constructor() {
     super({
-      key: 'GameScene'
+      key: 'SingleScene'
     });
   }
 
@@ -74,8 +74,11 @@ export class GameScene extends Phaser.Scene {
     this.player = new Snake(
       new SnakeGraphics(this, this.dotSize),
       new SnakeInput(this.cursors),
+      { x: 2, y: 2 },
+      'right',
       new SnakeCollision(this.world, this.addScore.bind(this))
     );
+
     this.player.draw();
   }
 

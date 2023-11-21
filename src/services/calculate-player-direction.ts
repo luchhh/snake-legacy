@@ -1,7 +1,8 @@
 import { Direction, Snake } from '../objects/snake';
+import { SnakeCursorKeys } from '../value-objects/snake-cursor-keys';
 
 export const calculatePlayerDirection = (
-  cursors: Phaser.Types.Input.Keyboard.CursorKeys,
+  cursors: SnakeCursorKeys,
   snake: Snake
 ): Direction => {
   const currentDirection = snake.getDirection();
