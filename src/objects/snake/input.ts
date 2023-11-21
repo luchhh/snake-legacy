@@ -1,10 +1,11 @@
 import { calculatePlayerDirection } from '../../services/calculate-player-direction';
+import { SnakeCursorKeys } from '../../value-objects/snake-cursor-keys';
 import { Snake } from '../snake';
 
 export class SnakeInput {
-  private cursors: Phaser.Types.Input.Keyboard.CursorKeys;
+  private cursors: SnakeCursorKeys;
 
-  constructor(cursors: Phaser.Types.Input.Keyboard.CursorKeys) {
+  constructor(cursors: SnakeCursorKeys) {
     this.cursors = cursors;
   }
 

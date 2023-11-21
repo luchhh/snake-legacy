@@ -1,4 +1,4 @@
-import { GridConfig } from '../scenes/game-scene';
+import { GridConfig } from '../value-objects/grid-config';
 import { Position } from '../value-objects/position';
 import { AppleGraphics } from './apple/graphics';
 
