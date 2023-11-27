@@ -4,7 +4,7 @@ This is a browser game that uses Phaser3 as a based framework
 
 ## Roadmap
 
-- Local multiplayer
+- :white_check_mark: Local multiplayer
 - Internet multiplayer
 - Change skin
 - Mobile friendly
@@ -31,7 +31,8 @@ yarn install
 ### Play
 
 ```
-yarn dev
+yarn build
+yarn start
 ```
 
 ## Architecture

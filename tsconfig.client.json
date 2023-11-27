@@ -1,18 +1,16 @@
 {
   "compilerOptions": {
-    "target": "es2018",
+    "target": "ES6",
     "module": "CommonJS",
     "moduleResolution": "node",
     "noImplicitAny": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,
-    "outDir": "dist-server",
   },
   "include": [
     "src/domain/**/*",
-    "src/server/**/*"
+    "src/client/**/*"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
   ]
 }

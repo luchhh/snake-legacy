@@ -1,6 +1,7 @@
 # Folders
 .vscode/
 dist/
+dist-server/
 node_modules/
 .cache
 
