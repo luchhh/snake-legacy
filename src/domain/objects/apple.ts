@@ -2,18 +2,27 @@ import { GridConfig } from '../value-objects/grid-config';
 import { Position } from '../value-objects/position';
 import { IAppleGraphics } from '../components/interfaces/graphics/apple';
 
+type Options = {
+  gridConfig: GridConfig,
+  graphics?: IAppleGraphics
+}
+
 export class Apple {
   private graphics: IAppleGraphics;
   private position: Position;
-  private gridConfig: GridConfig;
+  private gridConfig?: GridConfig;
 
-  constructor(graphics: IAppleGraphics, gridConfig: GridConfig) {
-    this.graphics = graphics;
-    this.gridConfig = gridConfig;
+  constructor(options: Options) {
+    this.graphics = options.graphics;
+    this.gridConfig = options.gridConfig;
   }
 
   public getPosition(): Position {
     return this.position;
+  }
+
+  public setPosition(position: Position) {
+    this.position = position;
   }
 
   /**
@@ -28,11 +37,11 @@ export class Apple {
 
   public draw() {
     this.setRandomPosition();
-    this.graphics.draw(this);
+    this.graphics?.draw(this);
   }
 
   public update(time: number) {
-    this.graphics.update(this);
+    this.graphics?.update(this);
   }
 
   private rndXPos(): number {

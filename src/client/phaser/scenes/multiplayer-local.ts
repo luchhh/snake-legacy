@@ -69,28 +69,28 @@ export class MultiplayerLocalScene extends Phaser.Scene {
     this.scoreText = paintScoreText(this, this.score, this.gameWidth);
 
     // objects
-    this.apple = new Apple(
-      new AppleGraphics(this, this.dotSize),
-      this.gridConfig
-    );
+    this.apple = new Apple({
+      gridConfig: this.gridConfig,
+      graphics: new AppleGraphics(this, this.dotSize)
+    });
     this.apple.draw();
 
-    this.playerOne = new Snake(
-      new SnakeGraphics(this, this.dotSize),
-      new SnakeInput(this.playerOneCursors),
-      { x: 2, y: 2 },
-      'right'
-    );
+    this.playerOne = new Snake({
+      initialPosition: { x: 2, y: 2 },
+      initialDirection: 'right',
+      graphics: new SnakeGraphics(this, this.dotSize),
+      input: new SnakeInput(this.playerOneCursors)
+    });
 
-    this.playerTwo = new Snake(
-      new SnakeGraphics(this, this.dotSize),
-      new SnakeInput(this.playerTwoCursors),
-      {
+    this.playerTwo = new Snake({
+      initialPosition: {
         x: this.gridConfig.horizontalSize - 2,
         y: this.gridConfig.verticalSize - 2
       },
-      'left'
-    );
+      initialDirection: 'left',
+      graphics: new SnakeGraphics(this, this.dotSize),
+      input: new SnakeInput(this.playerTwoCursors)
+    });
 
     this.worldForPlayerOne = {
       apple: this.apple,

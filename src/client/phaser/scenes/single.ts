@@ -60,10 +60,10 @@ export class SingleScene extends Phaser.Scene {
     this.scoreText = paintScoreText(this, this.score, this.gameWidth);
 
     // objects
-    this.apple = new Apple(
-      new AppleGraphics(this, this.dotSize),
-      this.gridConfig
-    );
+    this.apple = new Apple({
+      gridConfig: this.gridConfig,
+      graphics: new AppleGraphics(this, this.dotSize),
+    });
     this.apple.draw();
 
     this.world = {
@@ -72,11 +72,13 @@ export class SingleScene extends Phaser.Scene {
     };
 
     this.player = new Snake(
-      new SnakeGraphics(this, this.dotSize),
-      new SnakeInput(this.cursors),
-      { x: 2, y: 2 },
-      'right',
-      new SnakeCollision(this.world, this.addScore.bind(this))
+      {
+        initialPosition: { x: 2, y: 2 },
+        initialDirection: 'right',
+        graphics: new SnakeGraphics(this, this.dotSize),
+        input: new SnakeInput(this.cursors),
+        collision: new SnakeCollision(this.world, this.addScore.bind(this))
+      }
     );
 
     this.player.draw();

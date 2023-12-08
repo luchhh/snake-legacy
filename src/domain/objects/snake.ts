@@ -5,6 +5,14 @@ import { ISnakeInput } from '../components/interfaces/input/snake';
 
 export type Direction = 'up' | 'down' | 'right' | 'left';
 
+type Options = {
+  initialPosition: Position,
+  initialDirection: Direction,
+  graphics?: ISnakeGraphics,
+  input?: ISnakeInput,
+  collision?: SnakeCollision
+}
+
 export class Snake {
   private direction: Direction;
   private dead: boolean;
@@ -15,20 +23,16 @@ export class Snake {
   private tick: number;
 
   constructor(
-    graphics: ISnakeGraphics,
-    input: ISnakeInput,
-    initialPosition: Position,
-    initialDirection: Direction,
-    collision?: SnakeCollision
+    options: Options
   ) {
     this.tick = 0;
-    this.graphics = graphics;
-    this.input = input;
-    this.collision = collision;
+    this.graphics = options.graphics;
+    this.input = options.input;
+    this.collision = options.collision;
 
-    this.direction = initialDirection;
+    this.direction = options.initialDirection;
     this.dead = false;
-    this.snakeBody = [initialPosition];
+    this.snakeBody = [options.initialPosition];
   }
 
   //public state
@@ -36,11 +40,14 @@ export class Snake {
   public isDead(): boolean {
     return this.dead;
   }
-  public setDead(_dead: boolean): void {
-    this.dead = _dead;
+  public setDead(dead: boolean): void {
+    this.dead = dead;
   }
   public getSnakeBody(): Position[] {
     return this.snakeBody;
+  }
+  public setSnakeBody(snakeBody: Position[]): void {
+    this.snakeBody = snakeBody
   }
 
   public grow(): void {
@@ -69,7 +76,7 @@ export class Snake {
   }
 
   public draw() {
-    this.graphics.draw(this);
+    this.graphics?.draw(this);
   }
 
   public update(time: number) {
@@ -80,10 +87,10 @@ export class Snake {
     if (time - this.tick > 100) {
       this.move();
       this.collision?.update(this);
-      this.graphics.update(this);
+      this.graphics?.update(this);
       this.tick = time;
     }
-    this.input.update(this);
+    this.input?.update(this);
   }
 
   //private
