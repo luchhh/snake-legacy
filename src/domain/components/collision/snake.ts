@@ -4,6 +4,7 @@ import { isSnakeSelfCollision } from '../../services/is-snake-self-collision';
 import { isSnakeSnakeCollision } from '../../services/is-snake-snake-collision';
 import { World } from '../../value-objects/world';
 import { Snake } from '../../objects/snake';
+import { calculateNewBody } from '../../services/calculate-player-new-body';
 
 export class SnakeCollision {
   private world: World;
@@ -15,6 +16,9 @@ export class SnakeCollision {
   }
 
   public update(snake: Snake) {
+    snake.setSnakeBody(
+      calculateNewBody(snake.getSnakeBody(), snake.getDirection())
+    )
     // player vs. apple collision
     if (isAppleSnakeCollision(this.world.apple, snake)) {
       snake.grow();
