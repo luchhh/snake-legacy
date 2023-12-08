@@ -2,7 +2,7 @@ import { Apple } from '../../../domain/objects/apple';
 import { Snake } from '../../../domain/objects/snake';
 import { CONST } from '../../../domain/const/const';
 import { SnakeGraphics } from '../components/graphics/snake';
-import { SnakeInput } from '../components/input/snake';
+import { SnakeInput } from '../../../domain/components/input/snake';
 import { SnakeCollision } from '../../../domain/components/collision/snake';
 import { AppleGraphics } from '../components/graphics/apple';
 import { paintBorders } from '../services/paint-borders';
