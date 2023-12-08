@@ -85,32 +85,10 @@ export class Snake {
     }
 
     if (time - this.tick > 100) {
-      this.move();
       this.collision?.update(this);
       this.graphics?.update(this);
       this.tick = time;
     }
     this.input?.update(this);
-  }
-
-  //private
-
-  private move() {
-    // move rest of body
-    for (let i = this.getLength() - 1; i > 0; i--) {
-      this.snakeBody[i].x = this.snakeBody[i - 1].x;
-      this.snakeBody[i].y = this.snakeBody[i - 1].y;
-    }
-
-    // move head
-    if (this.getDirection() === 'left') {
-      this.snakeBody[0].x--;
-    } else if (this.getDirection() === 'right') {
-      this.snakeBody[0].x++;
-    } else if (this.getDirection() === 'up') {
-      this.snakeBody[0].y--;
-    } else if (this.getDirection() === 'down') {
-      this.snakeBody[0].y++;
-    }
   }
 }
