@@ -5,6 +5,8 @@ type Data = { lastScore: number };
 export class MainMenuScene extends Phaser.Scene {
   private singleKey: Phaser.Input.Keyboard.Key;
   private multiplayerLocalKey: Phaser.Input.Keyboard.Key;
+  private multiplayerOnlineKey: Phaser.Input.Keyboard.Key;
+
   private bitmapTexts: Phaser.GameObjects.BitmapText[] = [];
 
   constructor() {
@@ -19,6 +21,9 @@ export class MainMenuScene extends Phaser.Scene {
     );
     this.multiplayerLocalKey = this.input.keyboard.addKey(
       Phaser.Input.Keyboard.KeyCodes.L
+    );
+    this.multiplayerOnlineKey = this.input.keyboard.addKey(
+      Phaser.Input.Keyboard.KeyCodes.M
     );
 
     if (data.lastScore > CONST.HIGHSCORE) {
@@ -57,6 +62,16 @@ export class MainMenuScene extends Phaser.Scene {
 
     this.bitmapTexts.push(
       this.add.bitmapText(
+        this.sys.canvas.width / 2 - 80,
+        this.sys.canvas.height / 2 + 36,
+        'snakeFont',
+        'M: ONLINE MULTIPLAYER',
+        8
+      )
+    );
+
+    this.bitmapTexts.push(
+      this.add.bitmapText(
         this.sys.canvas.width / 2 - 70,
         this.sys.canvas.height / 2 - 80,
         'snakeFont',
@@ -78,7 +93,7 @@ export class MainMenuScene extends Phaser.Scene {
     this.bitmapTexts.push(
       this.add.bitmapText(
         this.sys.canvas.width / 2 - 45,
-        this.sys.canvas.height / 2 + 50,
+        this.sys.canvas.height / 2 + 70,
         'snakeFont',
         'HIGHSCORE: ' + CONST.HIGHSCORE,
         8
@@ -92,6 +107,9 @@ export class MainMenuScene extends Phaser.Scene {
     }
     if (this.multiplayerLocalKey.isDown) {
       this.scene.start('MultiplayerLocalScene');
+    }
+    if (this.multiplayerOnlineKey.isDown) {
+      this.scene.start('MultiplayerOnlineMenuScene');
     }
   }
 }

@@ -68,6 +68,7 @@
     <char id="89" x="3578" y="2" width="54" height="63" xoffset="0" yoffset="0" xadvance="72" page="0" chnl="15"/>
     <char id="90" x="3634" y="2" width="63" height="63" xoffset="0" yoffset="0" xadvance="72" page="0" chnl="15"/>
     <char id="58" x="3699" y="2" width="18" height="54" xoffset="18" yoffset="9" xadvance="72" page="0" chnl="15"/>
+    <char id="46" x="3699" y="27" width="18" height="25" xoffset="18" yoffset="25" xadvance="72" page="0" chnl="15"/>
     <char id="32" x="0" y="0" width="0" height="0" xoffset="18" yoffset="9" xadvance="72" page="0" chnl="15"/>
   </chars>
 </font>
