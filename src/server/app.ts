@@ -22,8 +22,10 @@ app.get('/', (req: Request, res: Response) => {
   res.sendFile(path.join(appRoot.path, 'dist/index.html'));
 });
 
-server.listen(3001, () => {
-  console.log('Running at http://localhost:3001');
+const port = process.env.PORT == null || process.env.PORT == "" ? 3001 : process.env.PORT;
+
+server.listen(port, () => {
+  console.log('Running at http://localhost:' + port);
 });
 
 io.on(EVENTS.connection, (socket) => {
