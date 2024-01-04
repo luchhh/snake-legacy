@@ -2,7 +2,6 @@ import { EVENTS } from '../../../domain/events';
 import { Socket, io } from "socket.io-client";
 
 export class MultiplayerOnlineMenuScene extends Phaser.Scene {
-  private createOrJoin: Phaser.GameObjects.BitmapText[] = [];
   private waiting: Phaser.GameObjects.BitmapText;
   private errorText: Phaser.GameObjects.BitmapText;
   private socket: Socket;
@@ -26,9 +25,6 @@ export class MultiplayerOnlineMenuScene extends Phaser.Scene {
     })
 
     this.socket.on(EVENTS.multiplayer.wait, () => {
-      this.createOrJoin.map((bitmap) => {
-        bitmap.setVisible(false)
-      })
       this.waiting.setVisible(true)
     })
 
@@ -48,26 +44,6 @@ export class MultiplayerOnlineMenuScene extends Phaser.Scene {
   }
 
   create(): void {
-    this.createOrJoin.push(
-      this.add.bitmapText(
-        this.sys.canvas.width / 2 - 78,
-        this.sys.canvas.height / 2,
-        'snakeFont',
-        'C: CREATE',
-        8
-      )
-    );
-
-    this.createOrJoin.push(
-      this.add.bitmapText(
-        this.sys.canvas.width / 2 - 78,
-        this.sys.canvas.height / 2 + 18,
-        'snakeFont',
-        'J: JOIN',
-        8
-      )
-    );
-
     this.waiting = this.add.bitmapText(
       this.sys.canvas.width / 2 - 78,
       this.sys.canvas.height / 2 + 18,
