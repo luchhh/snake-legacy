@@ -7,7 +7,7 @@ export const gameLoop = async (game: MultiplayerOnline, sendState: SendStateFunc
   while (!game.getIsGameOver()) {
     game.update(Date.now())
     sendState(game)
-    await new Promise(r => setTimeout(r, 10));
+    await new Promise(r => setTimeout(r, 1));
   }
   sendEndScene()
   console.log('ending loop')
