@@ -1,10 +1,13 @@
-The good old snake game as a playground to test architecture
+The good old snake game as a playground to test architecture patterns
 
-This is a browser game that uses Phaser3 as a based framework
+To play the game: https://snake-legacy-f87e7f806781.herokuapp.com/
+
+![snake-screenshot](https://github.com/luchhh/snake-legacy/assets/508230/d559fab0-824f-4cad-9896-47e5b9e51c94)
 
 ## Roadmap
 
 - :white_check_mark: Local multiplayer
+- :white_check_mark: Internet multiplayer
 - Internet multiplayer
 - Change skin
 - Mobile friendly
@@ -36,6 +39,8 @@ yarn start
 ```
 
 ## Architecture
+
+This is a browser game that uses Phaser3 as a based framework
 
 Apple and Snake are two POTOs handling state of these objects in the game. They are completely agnostic of the Phaser framework.
 
