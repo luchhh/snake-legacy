@@ -8,7 +8,6 @@ To play the game: https://snake-legacy-f87e7f806781.herokuapp.com/
 
 - :white_check_mark: Local multiplayer
 - :white_check_mark: Internet multiplayer
-- Internet multiplayer
 - Change skin
 - Mobile friendly
 - Sound effects
