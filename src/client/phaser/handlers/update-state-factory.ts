@@ -7,7 +7,6 @@ type updateStateFunction = (state: any) => void
 
 export const updateStateFactory = (players: Snake[], apple: Apple, setScore: Function): updateStateFunction => {
   return (state: any) => {
-    console.log("State update on client", state)
     state.players.forEach((playerBody: Position[], idx: integer) => {
       players[idx].setSnakeBody(playerBody)
     })
