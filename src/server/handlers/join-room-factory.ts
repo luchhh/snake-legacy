@@ -10,17 +10,18 @@ import { MultiplayerOnline } from "../multiplayer-online"
 const ROOM_LIMIT_SIZE = 2;
 
 // A function that joins a socket to a room
-type JoinRoomFunction = (roomName: string) => void
+type JoinRoomFunction = (roomName: string, username: string) => void
 
 export const joinRoomFactory = (io: Server, socket: any, gameStore: GameStore): JoinRoomFunction => {
 
-  return async (roomName: string) => {
+  return async (roomName: string, username: string) => {
     const room = io.sockets.adapter.rooms.get(roomName)
 
     if (room && room.size < ROOM_LIMIT_SIZE) {
       console.log('joined room', roomName)
       socket.join(roomName)
-      io.to(roomName).emit(EVENTS.multiplayer.play)
+      gameStore.registerPlayer(roomName, username)
+      io.to(roomName).emit(EVENTS.multiplayer.play, gameStore.findPlayersByRoom(roomName))
 
       const game = gameStore.findGameByRoom(roomName)
       registerInputHandler(socket, game)

@@ -19,9 +19,9 @@ export const retryRoomFactory = (io: Server, socket: any, gameStore: GameStore):
 
     if (room && room.size == ROOM_LIMIT_SIZE) {
       console.log('retrying room', roomName)
-      io.to(roomName).emit(EVENTS.multiplayer.play)
       const game = gameStore.findGameByRoom(roomName)
       if (game.getIsGameOver()) {
+        io.to(roomName).emit(EVENTS.multiplayer.play, gameStore.findPlayersByRoom(roomName))
         initGame(game, io, roomName)
       }
     } else {

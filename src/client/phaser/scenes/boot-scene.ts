@@ -71,10 +71,7 @@ export class BootScene extends Phaser.Scene {
         return
       }
 
-      // TODO:
-      // store value in local storage
-      // pass value in multiplayer games
-      this.scene.start('MainMenuScene');
+      sessionStorage.setItem("username", username.value);
     });
   }
 
@@ -83,5 +80,11 @@ export class BootScene extends Phaser.Scene {
     setTimeout(() => {
       this.errorText.setText("");
     }, 2000);
+  }
+
+  update(): void {
+    if (sessionStorage.getItem("username")) {
+      this.scene.start('MainMenuScene');
+    }
   }
 }
