@@ -10,8 +10,9 @@ import { Socket } from "socket.io-client";
 import { EVENTS } from '../../../domain/events';
 import { updateStateFactory } from '../handlers/update-state-factory';
 import { EmitToSocket } from '../components/input/emit-to-socket';
+import { paintUsernamesText } from '../services/paint-usernames-text';
 
-type Data = { socket: Socket }
+type Data = { socket: Socket, players: string[] }
 
 export class MultiplayerOnlineScene extends Phaser.Scene {
   // field and game setting
@@ -30,12 +31,15 @@ export class MultiplayerOnlineScene extends Phaser.Scene {
 
   // texts
   private scoreText: Phaser.GameObjects.BitmapText;
+  private playersText: Phaser.GameObjects.BitmapText;
 
   // cursor
   private cursors: Phaser.Types.Input.Keyboard.CursorKeys;
   private tick: number;
   private socket: Socket;
   private endScene: boolean;
+
+  private playersUsername: string[];
 
   constructor() {
     super({
@@ -58,12 +62,14 @@ export class MultiplayerOnlineScene extends Phaser.Scene {
     this.tick = 0;
     this.socket = data.socket;
     this.endScene = false;
+    this.playersUsername = data.players;
   }
 
   create(): void {
     // decoration
     paintBorders(this, this.dotSize, this.gameWidth, this.gameHeight);
     this.scoreText = paintScoreText(this, this.score, this.gameWidth);
+    this.playersText = paintUsernamesText(this, this.playersUsername, this.gameHeight, this.dotSize);
 
     // objects
     this.apple = new Apple({

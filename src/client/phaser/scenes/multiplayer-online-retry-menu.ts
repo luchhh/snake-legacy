@@ -47,8 +47,8 @@ export class MultiplayerOnlineRetryMenuScene extends Phaser.Scene {
       })
     })
 
-    this.socket.on(EVENTS.multiplayer.play, () => {
-      this.scene.start('MultiplayerOnlineScene', { socket: this.socket });
+    this.socket.on(EVENTS.multiplayer.play, (players: string[]) => {
+      this.scene.start('MultiplayerOnlineScene', { socket: this.socket, players: players });
     })
 
     if (data.lastScore > CONST.HIGHSCORE) {

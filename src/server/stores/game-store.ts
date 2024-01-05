@@ -5,4 +5,6 @@ export interface GameStore {
   findGameByRoom(room: string): MultiplayerOnline
   setIsFinished(room: string): void
   findIsFinishedByRoom(room: string): boolean
+  registerPlayer(room: string, player: string): void
+  findPlayersByRoom(room: string): string[]
 }

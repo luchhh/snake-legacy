@@ -28,11 +28,10 @@ export class MultiplayerOnlineMenuScene extends Phaser.Scene {
       this.waiting.setVisible(true)
     })
 
-    this.socket.on(EVENTS.multiplayer.play, () => {
-      this.scene.start('MultiplayerOnlineScene', { socket: this.socket });
+    this.socket.on(EVENTS.multiplayer.play, (players: string[]) => {
+      this.scene.start('MultiplayerOnlineScene', { socket: this.socket, players: players });
     })
-
-    this.socket.emit(EVENTS.multiplayer.join_or_create_room);
+    this.socket.emit(EVENTS.multiplayer.join_or_create_room, sessionStorage.getItem('username'));
   }
 
   preload(): void {

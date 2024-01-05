@@ -5,13 +5,13 @@ import { registerInputHandler } from "./input-handler"
 import { EVENTS } from "../../domain/events"
 
 // A function that creates a room
-type CreateRoomFunction = (roomName: string) => void
+type CreateRoomFunction = (roomName: string, username: string) => void
 
 export const createRoomFactory = (io: Server, socket: any, gameStore: GameStore): CreateRoomFunction => {
-  return (room: string) => {
+  return (room: string, username: string) => {
     if (!roomExists(io, room)) {
       socket.join(room)
-      createGame(room, socket, gameStore)
+      createGame(room, socket, gameStore, username)
       socket.emit(EVENTS.multiplayer.wait)
       console.log("created room", room)
     } else {
@@ -24,9 +24,10 @@ const roomExists = (io: Server, room: string) => {
   return io.sockets.adapter.rooms.get(room) != null
 }
 
-const createGame = (room: string, socket: any, gameStore: GameStore) => {
+const createGame = (room: string, socket: any, gameStore: GameStore, username: string) => {
   const game = new MultiplayerOnline()
   gameStore.registerGame(room, game)
+  gameStore.registerPlayer(room, username)
   registerInputHandler(socket, game)
 }
 
