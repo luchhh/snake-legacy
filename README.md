@@ -1,6 +1,6 @@
 The good old snake game as a playground to test architecture patterns
 
-To play the game: https://snake-legacy-f87e7f806781.herokuapp.com/
+To play the game: [https://snake-legacy-58ec99976e73.herokuapp.com/](https://snake-legacy-58ec99976e73.herokuapp.com/) (you may need to wait 1 min for server to warm up if you are the first player of the day)
 
 ![snake-screenshot](https://github.com/luchhh/snake-legacy/assets/508230/d559fab0-824f-4cad-9896-47e5b9e51c94)
 
